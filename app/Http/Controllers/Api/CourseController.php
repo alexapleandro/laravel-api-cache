@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = $this->service->getAll();
+        
         return CourseResource::collection($courses);
     }
 
@@ -34,9 +36,11 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-        //
+        $course = $this->service->create($request->validated());
+        
+        return new CourseResource($course);
     }
 
     /**

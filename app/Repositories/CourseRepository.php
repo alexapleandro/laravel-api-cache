@@ -16,4 +16,8 @@ class CourseRepository{
     public function getAll(){
         return $this->entity->all();
     }
+
+    public function create(array $data){
+        return $this->entity->create($data);
+    }
 }
