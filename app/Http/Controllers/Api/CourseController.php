@@ -3,10 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CourseResource;
+use App\Services\CourseService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+
+    protected $service;
+    
+    public function __construct(CourseService $courseService)
+    {
+        $this->service = $courseService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = $this->service->getAll();
+        return CourseResource::collection($courses);
     }
 
     /**
