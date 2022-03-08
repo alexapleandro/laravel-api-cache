@@ -46,12 +46,14 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($identify)
     {
-        //
+        $course = $this->service->getByUUID($identify);
+        
+        return new CourseResource($course);
     }
 
     /**
@@ -69,11 +71,13 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($identify)
     {
-        //
+        $this->service->deleteByUUID($identify);
+
+        return response()->json([], 204);
     }
 }
