@@ -17,7 +17,7 @@ class CourseRepository{
         return $this->entity->all();
     }
 
-    public function getByUUID(String $identify){
+    public function getByUuid(String $identify){
         return $this->entity->where('uuid', $identify)->firstOrfail();
     }
 
@@ -25,8 +25,14 @@ class CourseRepository{
         return $this->entity->create($data);
     }
 
-    public function deleteByUUID(String $identify){
-        $course = $this->getByUUID($identify);
+    public function updateByUuid(string $identify, array $data)
+    {
+        $course = $this->getByUuid($identify);
+        return $course->update($data);
+    }
+
+    public function deleteByUuid(String $identify){
+        $course = $this->getByUuid($identify);
         return $course->delete();
     }
 }

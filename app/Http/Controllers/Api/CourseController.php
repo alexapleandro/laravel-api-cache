@@ -51,7 +51,7 @@ class CourseController extends Controller
      */
     public function show($identify)
     {
-        $course = $this->service->getByUUID($identify);
+        $course = $this->service->getByUuid($identify);
         
         return new CourseResource($course);
     }
@@ -60,12 +60,14 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CourseRequest $request, $identify)
     {
-        //
+        $this->service->updateByUuid($identify, $request->validated());
+
+        return response()->json(['message' => 'updated']);
     }
 
     /**
@@ -76,7 +78,7 @@ class CourseController extends Controller
      */
     public function destroy($identify)
     {
-        $this->service->deleteByUUID($identify);
+        $this->service->deleteByUuid($identify);
 
         return response()->json([], 204);
     }

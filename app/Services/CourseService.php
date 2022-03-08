@@ -18,9 +18,9 @@ class CourseService{
         return $this->repository->getAll();
     }
 
-    public function getByUUID(String $identify)
+    public function getByUuid(String $identify)
     {
-        return $this->repository->getByUUID($identify);
+        return $this->repository->getByUuid($identify);
     }
 
     public function create(array $data)
@@ -28,8 +28,13 @@ class CourseService{
         return $this->repository->create($data);
     }
 
-    public function deleteByUUID(String $identify)
+    public function updateByUuid(string $identify, array $data)
     {
-        return $this->repository->deleteByUUID($identify);
+        return $this->repository->updateByUuid($identify, $data);
+    }
+
+    public function deleteByUuid(String $identify)
+    {
+        return $this->repository->deleteByUuid($identify);
     }
 }
