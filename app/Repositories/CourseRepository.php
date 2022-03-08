@@ -24,4 +24,9 @@ class CourseRepository{
     public function create(array $data){
         return $this->entity->create($data);
     }
+
+    public function deleteByUUID(String $identify){
+        $course = $this->getByUUID($identify);
+        return $course->delete();
+    }
 }

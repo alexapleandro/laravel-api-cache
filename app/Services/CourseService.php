@@ -27,4 +27,9 @@ class CourseService{
     {
         return $this->repository->create($data);
     }
+
+    public function deleteByUUID(String $identify)
+    {
+        return $this->repository->deleteByUUID($identify);
+    }
 }
