@@ -18,6 +18,11 @@ class CourseService{
         return $this->repository->getAll();
     }
 
+    public function getByUUID(String $identify)
+    {
+        return $this->repository->getByUUID($identify);
+    }
+
     public function create(array $data)
     {
         return $this->repository->create($data);

@@ -17,6 +17,10 @@ class CourseRepository{
         return $this->entity->all();
     }
 
+    public function getByUUID(String $identify){
+        return $this->entity->where('uuid', $identify)->firstOrfail();
+    }
+
     public function create(array $data){
         return $this->entity->create($data);
     }
